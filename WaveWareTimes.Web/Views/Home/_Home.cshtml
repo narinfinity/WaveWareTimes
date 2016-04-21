@@ -1,0 +1,33 @@
+﻿<!-- ko with: home -->
+<div class="jumbotron">
+    <h2>Registered users</h2>
+</div>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead class="thead-default">
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: usersRegistered">
+                <tr>
+                    <th scope="row"><span data-bind="text: Id"> </span></th>
+                    <td><span data-bind="text: UserName"> </span></td>
+                    <td><span data-bind="text: FirstName"> </span></td>
+                    <td><span data-bind="text: LastName"> </span></td>
+                    <td><span data-bind="text: Email"> </span></td>
+                    <td><span data-bind="text: Roles[0]"> </span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- /ko -->

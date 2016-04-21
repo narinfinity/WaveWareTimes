@@ -1,0 +1,3 @@
+﻿Enable-Migrations -ContextTypeName WaveWareTimes.Infrastructure.Data.DataContext -MigrationsDirectory Migrations.DataContext
+Add-Migration -ConfigurationTypeName WaveWareTimes.Infrastructure.Data.Migrations.DataContext.Configuration "InitialCreate"
+Update-Database -ConfigurationTypeName WaveWareTimes.Infrastructure.Data.Migrations.DataContext.Configuration -Verbose

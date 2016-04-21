@@ -1,0 +1,74 @@
+﻿@{
+    Layout = null;
+    Response.Headers["X-UA-Compatible"] = "IE=10";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>WaveWareTimes SPA</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/kendo/bootstrap/css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div data-bind="visible: loading">Loading...</div>
+    <div style="display: none" data-bind="visible: true" class="container body-content">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <p class="navbar-brand" data-bind="if: !loggedIn()">WaveWareTimes SPA</p>
+                    <a href="#" class="navbar-brand" data-bind="if: loggedIn, click: navigateToHome">WaveWareTimes SPA</a>
+                </div>
+                <div data-bind="if: loggedIn" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        @*<li><a href="#" data-bind="click: navigateToHome">Home</a></li>*@
+                        <li><a href="#" data-bind="click: navigateToWorkTimeRecord">Work Time Records</a></li>
+                        @*<li>@Html.ActionLink("API", "Index", "Help", new { area = "HelpPage" }, null)</li>*@
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" data-bind="with: user">
+                        <li data-bind="if: isAdmin">
+                            <span class="navbar-text nofloat"><a href="#" class="navbar-link" data-bind="click: navigateToUsers">Registered Users</a></span>
+                        </li>
+                        <li data-bind="if: isAdmin">
+                            <span class="navbar-text nofloat"><a href="#" class="navbar-link" data-bind="click: register">Register a User</a></span>
+                        </li>
+                        <li>
+                            <span class="navbar-text nofloat">Hello, <a href="#" class="navbar-link" data-bind="text: name, click: manage"></a></span>
+                        </li>
+                        <li><a href="#" data-bind="click: logOff">Log off</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div data-bind="foreach: errors" class="padding-error">
+            <p class="text-danger" data-bind="text: $data"></p>
+        </div>
+        @Html.Partial("_Home")
+        @Html.Partial("_Login")
+        @Html.Partial("_Register")
+        @Html.Partial("_RegisterExternal")
+        @Html.Partial("_Manage")
+        @Html.Partial("_WorkTimeRecord")
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/app")
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>
